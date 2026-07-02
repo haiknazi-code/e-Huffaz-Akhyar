@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f7f5f0;
+    color: #0f172a;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+}
+
+.font-arabic {
+    font-family: 'Amiri', serif;
+}
+
+@layer base {
+    :root {
+        --background: 45 33% 96%;
+        --foreground: 222 47% 11%;
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 11%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 47% 11%;
+        --primary: 142 71% 21%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 35 92% 35%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 210 40% 96%;
+        --muted-foreground: 215 16% 47%;
+        --accent: 35 92% 92%;
+        --accent-foreground: 35 92% 25%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 142 71% 21%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Sticky gradient header - Maroon dominant + sedikit Gold accent */
+.header-gradient {
+    background: linear-gradient(135deg, #6e0a14 0%, #8b1538 60%, #6e0a14 85%, #c9a227 100%);
+}
+
+.btn-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shine::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.6s ease;
+}
+
+.btn-shine:hover::after {
+    left: 125%;
+}
+
+.card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -15px rgba(22, 101, 52, 0.25);
+}
+
+.btn-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-hover:hover {
+    transform: scale(1.04);
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+    animation: fadeUp 0.4s ease forwards;
+}
+
+/* Islamic geometric pattern subtle bg */
+.pattern-bg {
+    background-color: #f7f5f0;
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(22, 101, 52, 0.06) 1px, transparent 0);
+    background-size: 24px 24px;
+}
+
+/* Sticky header backdrop */
+.sticky-header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Result button colours */
+.btn-mumtaz {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+}
+.btn-jayyid {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+}
+.btn-daif {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}

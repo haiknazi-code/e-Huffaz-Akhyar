@@ -1,0 +1,85 @@
+{
+  "theme": {
+    "mode": "light",
+    "archetype": "Organic & Earthy / Jewel & Luxury blend",
+    "colors": {
+      "primary": "#166534",
+      "primary_foreground": "#ffffff",
+      "secondary": "#b45309",
+      "secondary_foreground": "#ffffff",
+      "background": "#f8fafc",
+      "surface": "#ffffff",
+      "border": "#e2e8f0",
+      "text_main": "#0f172a",
+      "text_muted": "#64748b",
+      "status": {
+        "mumtaz": "#10b981", 
+        "jayyid": "#f59e0b",
+        "daif": "#ef4444",
+        "info": "#3b82f6"
+      }
+    },
+    "fonts": {
+      "headings": "'Outfit', sans-serif",
+      "body": "'DM Sans', sans-serif",
+      "arabic": "'Amiri', serif",
+      "import_urls": [
+        "https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap",
+        "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap",
+        "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap"
+      ]
+    },
+    "spacing_and_radius": {
+      "radius_card": "12px",
+      "radius_button": "8px",
+      "spacing_base": "4px"
+    }
+  },
+  "layout_strategies": {
+    "global": "Sticky header with gradient background. Responsive layout: 1 col mobile, 2 col tablet, 3-4 col desktop for grids. Generous padding in containers.",
+    "header": "Gradient from #166534 to #15803d, glassmorphism if sticky over content, text in white. Includes school logo and system name.",
+    "footer": "Dark or light background with large Arabic verse 'خَيْرُكُمْ مَنْ تَعَلَّمَ القُرْآنَ وَعَلَّمَهُ' in Amiri font centered, text-2xl or 3xl.",
+    "dashboard_cards": "Flat background, subtle border, no heavy shadow unless hovered. Use Neumorphism/Tactile variant for quick action buttons."
+  },
+  "component_guidelines": {
+    "buttons": "Primary buttons use #166534. Mode selectors use subdued variants unless active. Status buttons (Mumtaz, Jayyid, Daif) use solid bright colors when active.",
+    "inputs": "Shadcn based. 1px border #e2e8f0, focus ring using #166534.",
+    "tables": "Clean lines, hover states on rows, clear status badges.",
+    "toast": "Sonner for toasts. Success (Green), Error (Red), Warning (Amber).",
+    "charts": "Shadcn charts (Recharts) for Prestasi Pelajar. Use primary and secondary colors."
+  },
+  "media": {
+    "images": [
+      {
+        "category": "logo",
+        "url": "https://static.prod-images.emergentagent.com/jobs/1bfcc4c5-a365-483a-8c04-2383ba0e3a26/images/fbeed37c9c14e417e84290f82c6cda08c762a79270d7bbd8c565c04d6e82a884.png",
+        "description": "School Logo - e-HUFFAZ AL-AKHYAR"
+      },
+      {
+        "category": "background",
+        "url": "https://static.prod-images.emergentagent.com/jobs/1bfcc4c5-a365-483a-8c04-2383ba0e3a26/images/b8c0c37fa32062a70f04dcea752bf9143f4e37fbd2f4f3dc9b5be5547b7859cc.png",
+        "description": "Subtle Islamic pattern for page backgrounds or card accents"
+      },
+      {
+        "category": "hero_or_auth",
+        "url": "https://static.prod-images.emergentagent.com/jobs/1bfcc4c5-a365-483a-8c04-2383ba0e3a26/images/51dd81161968da19e9560cad427f6868ff5bbd480e328702945d8465d89846e3.png",
+        "description": "Premium Quran hero image for welcome areas"
+      }
+    ],
+    "icons": {
+      "library": "lucide-react"
+    }
+  },
+  "specific_pages": {
+    "homepage": "Buletin Utama as a prominent card or feed. 4 main navigation buttons presented in a Bento Grid layout. Status box highlighting missing submissions.",
+    "rekod_harian": "Tabs for mode tasmi'. 5 halaqahs selection. Complex grid for Juzuk (1-30) and Surah - use compact layout. Large clear result buttons (Mumtaz, Jayyid, Daif).",
+    "dashboard": "Top students and halaqah rankings. Overall achievement bar chart. Weak students list.",
+    "laporan_halaqah": "Monthly report view with stats and comments. Button for PDF export.",
+    "prestasi_pelajar": "Line graphs tracking student performance over time."
+  },
+  "accessibility_and_motion": {
+    "motion": "Subtle hover lifts for cards (-translate-y-1). Smooth tab transitions. Skeleton loaders for data fetching.",
+    "accessibility": "High contrast text. aria-labels on icon buttons. data-testid on all interactive elements."
+  },
+  "instructions_to_main_agent": "Implement a clean, SaaS-like dashboard but with a premium educational feel. Use the provided colors. Ensure all Arabic text uses the Amiri font. Use lucide-react for icons. The logo should be placed in the header. Use shadcn components extensively for tables, forms, and charts."
+}

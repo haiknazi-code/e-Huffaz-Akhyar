@@ -1,0 +1,33 @@
+{
+  "summary": "Backend testing for e-HUFFAZ AL-AKHYAR completed. All 21 pytest cases passed (100%) covering auth, halaqahs, students, buletin CRUD, tasmi CRUD with filters, and all 7 analytics endpoints. Verified _id is never leaked, Bearer token auth is enforced, wrong password returns 401, and Google Sheets CSV student fetch works with header row 'NAMA PELAJAR' filtered out.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/halaqahs/{id}/students", "issue": "No cleanup endpoint for extra DB students; TEST_ data accumulates in extra_students collection across runs. Also no validation that 'nama' is non-empty (empty string after strip() would still be inserted)."},
+      {"endpoint": "POST /api/tasmi", "issue": "No validation on mod/keputusan enum values - accepts any string. No validation that halaqah_id exists in HALAQAHS."},
+      {"endpoint": "GET /api/halaqahs/{id}/students", "issue": "Sheet parsing heuristic takes the first non-empty cell of each row as a name. If a sheet has 'Bil' column with numbers and a name column, first cell is numeric (skipped correctly), but any short single-word non-name (e.g., '-' or numeric labels) may slip if length>=3 and contains a letter. Header 'NAMA PELAJAR' is explicitly filtered."},
+      {"endpoint": "GET /api/analytics/pending-halaqahs", "issue": "Uses server-local date.today() with no timezone awareness; could mismatch user expectations across TZ boundaries."}
+    ]
+  },
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": ["/app/backend/tests/test_backend.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [
+    "Optional: Add Pydantic enum validation for tasmi 'mod' and 'keputusan' fields to reject invalid values with 422.",
+    "Optional: Add DELETE endpoint for extra_students to support cleanup/maintenance.",
+    "Optional: Reject empty 'nama' in POST /api/halaqahs/{id}/students with 400."
+  ],
+  "critical_code_review_comments": [
+    "server.py uses on_event('shutdown') which is deprecated in newer FastAPI; consider lifespan handler.",
+    "SHARED_PASSWORD/SIMPLE_TOKEN have hardcoded fallback defaults in code matching .env; OK for this app but better to fail fast if missing.",
+    "No rate limiting on /api/auth/login - brute force possible against a 10-char password.",
+    "TasmiCreate accepts mod/keputusan as free strings; should use Literal/Enum for stronger contract.",
+    "fetch_students_from_sheet has process-wide in-memory cache - won't scale across workers; acceptable for single-instance MVP."
+  ],
+  "updated_files": ["/app/backend/tests/test_backend.py"],
+  "success_rate": {"backend": "100%", "frontend": "not tested (backend-only request)"},
+  "test_credentials": "password=akhyar2026, token=ehuffaz-akhyar-2026-token (from /app/memory/test_credentials.md)",
+  "seed_data_creation": "Tests create TEST_-prefixed buletin/tasmi records and cleanup at end. One extra student 'TEST_Pelajar Tambahan' may remain in extra_students for halaqah_id=haikal (no delete endpoint exists).",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend is solid; all endpoints work and respect auth. Google Sheets CSV fetch is live and dependent on external network. Test file at /app/backend/tests/test_backend.py is pytest-compatible and self-cleaning except for extra_students (no delete API). Frontend testing was not requested."
+}
